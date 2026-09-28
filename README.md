@@ -58,49 +58,6 @@ flowchart LR
 - Accounts have email verification, password reset, change password, log out everywhere, and delete account. Sign-ups, logins, calls, and voice requests are rate limited. Daily limits reset at midnight in each player's own timezone.
 - There's an admin page for managing users and removing bad scores, and errors get logged to a file.
 
-## Tech
-
-| | |
-| --- | --- |
-| Backend | Python, FastAPI, SQLite |
-| AI | Works with a free local model (Ollama), Groq's free tier, the Claude API, or Amazon Bedrock |
-| Voice | Orpheus on Groq or Amazon Polly, Web Speech API for speech-to-text |
-| Frontend | HTML, CSS, vanilla JavaScript |
-| Tests | pytest (77 tests, AI is mocked), run on every push with GitHub Actions |
-| Deploy | Dockerfile included |
-
-## Running it
-
-You need Python 3.10+.
-
-```bash
-git clone https://github.com/romariosalama/callcade.git
-cd callcade
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-cd backend
-uvicorn app:app --reload
-```
-
-Then go to http://localhost:8000 (Chrome works best for voice). It starts with a simple practice bot. To turn on the real AI buyers, follow [docs/AI_SETUP.md](docs/AI_SETUP.md). The easiest free option is Groq, which also gives you the buyer voices. For Amazon Bedrock and Polly instead, see [docs/AWS_SETUP.md](docs/AWS_SETUP.md).
-
-To run the tests, go to the project folder and run `pytest`.
-
-Or with Docker:
-
-```bash
-docker build -t callcade .
-docker run -p 8000:8000 --env-file .env -v callcade-data:/data callcade
-```
-
-## What's next
-
-- [ ] Stripe checkout for the Pro plan
-- [ ] Deploy it on AWS so the leaderboard is actually global
-- [ ] Streaming responses so the buyer starts talking faster
-- [ ] Team mode for sales managers to assign scenarios
 
 ## Project layout
 
@@ -127,11 +84,10 @@ backend/
   voice.py        buyer voices (Orpheus on Groq, or Polly)
   playtest.py     runs scripted calls against the real AI so I can check the buyers still feel right
   data/           the buyers for each industry, realism packs, objections, Spot the Mistake calls, Clutch Call scripts
-frontend/
+  frontend/
   index.html, css/, js/, fonts/
-  trailer/        the trailer as an animated page (rendered to media/)
-tests/
-docs/
+  tests/
+  docs/
 ```
 
 ---
