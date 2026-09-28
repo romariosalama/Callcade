@@ -92,4 +92,4 @@ backend/
 
 ---
 
-Made by Romario · [LinkedIn](https://www.linkedin.com/in/YOUR-LINKEDIN) · AWS Certified Cloud Practitioner · AWS Certified AI Practitioner
+Made by Romario Salama · [LinkedIn]([https://www.linkedin.com/in/YOUR-LINKEDIN](https://www.linkedin.com/in/romario-salama-8a5ba21a2/))
