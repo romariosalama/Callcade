@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Callcade Trailer</title>
+<style>
+@font-face { font-family: "Rubik"; font-weight: 400; src: url("../fonts/rubik-400.woff2") format("woff2"); }
+@font-face { font-family: "Rubik"; font-weight: 500; src: url("../fonts/rubik-500.woff2") format("woff2"); }
+@font-face { font-family: "Rubik"; font-weight: 700; src: url("../fonts/rubik-700.woff2") format("woff2"); }
+@font-face { font-family: "Rubik"; font-weight: 800; src: url("../fonts/rubik-800.woff2") format("woff2"); }
+@font-face { font-family: "Press Start 2P"; src: url("../fonts/press-start-2p.woff2") format("woff2"); }
+
+:root { --accent: #ff6b35; --accent-dark: #c4491c; --ink: #17110d; --info: #4cc9f0; --pink: #ff5c8a; --green: #3ddc84; --gold: #ffd23f; --red: #ff5c5c;
+  --panel: #1a1b1f; --panel-2: #232429; --line: #34353d; --muted: #b0b2ba; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+body { display: grid; place-items: center; }
+#stage { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #111214; color: #f3f2ef;
+  font-family: Rubik, sans-serif; transform-origin: center; flex: none; }
+.pixel { font-family: "Press Start 2P", monospace; }
+.abs { position: absolute; }
+.scene { position: absolute; inset: 0; opacity: 0; }
+.center { left: 0; right: 0; text-align: center; }
+em { font-style: normal; color: var(--accent); }
+
+/* background: a flat arcade floor, nothing glowing */
+#floor { position: absolute; left: -50%; right: -50%; bottom: -80px; height: 520px; transform: perspective(600px) rotateX(64deg); transform-origin: bottom;
+  background-image: linear-gradient(#7a3f22 2px, transparent 2px), linear-gradient(90deg, #7a3f22 2px, transparent 2px); background-size: 90px 90px;
+  -webkit-mask-image: linear-gradient(to top, black 10%, transparent 90%); mask-image: linear-gradient(to top, black 10%, transparent 90%); }
+#scan { position: absolute; inset: 0; pointer-events: none; z-index: 50;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px); }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 60; pointer-events: none; }
+#fade { position: absolute; inset: 0; background: #000; opacity: 0; z-index: 61; pointer-events: none; }
+#corner { position: absolute; right: 48px; bottom: 40px; font-size: 16px; opacity: 0; z-index: 40; color: var(--accent); }
+
+/* S1 */
+.phone-ic { left: 50%; top: 330px; width: 190px; height: 190px; margin-left: -95px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--accent); box-shadow: 0 8px 0 var(--accent-dark); }
+.phone-ic svg { width: 92px; height: 92px; }
+.wave { left: 50%; top: 425px; width: 190px; height: 190px; margin: -95px 0 0 -95px; border-radius: 50%; border: 4px solid var(--accent); }
+.big-line { font-size: 76px; font-weight: 800; letter-spacing: -.01em; }
+
+/* S2 */
+.slam { font-weight: 800; white-space: nowrap; letter-spacing: -.01em; }
+.ended { font-size: 58px; color: var(--red); }
+#flat { left: 260px; top: 640px; width: 1400px; height: 160px; }
+
+/* S4 logo */
+.logo { font-size: 150px; letter-spacing: .02em; color: var(--accent); }
+.sub { font-size: 30px; color: #f3f2ef; }
+.chip { font-size: 28px; font-weight: 700; padding: 18px 30px; border-radius: 12px; background: var(--panel); border: 2px solid var(--line); }
+.chip i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-right: 14px; vertical-align: 2px; }
+
+/* S5 call: looks like the real call screen */
+.caption { font-size: 54px; font-weight: 800; letter-spacing: -.01em; }
+#win { left: 190px; top: 210px; width: 1540px; height: 800px; border-radius: 20px; background: var(--panel); border: 2px solid var(--line); overflow: hidden; }
+#side { position: absolute; left: 0; top: 0; bottom: 0; width: 460px; border-right: 2px solid var(--line); padding: 40px 38px; background: #16171a; }
+.boss-av { width: 150px; height: 150px; margin: 18px auto 0; border-radius: 50%; display: grid; place-items: center; font-size: 52px; font-weight: 800; color: #fff;
+  background: #b45309; outline: 6px solid transparent; outline-offset: 6px; }
+.side-name { text-align: center; font-size: 38px; font-weight: 800; margin-top: 22px; }
+.side-role { text-align: center; color: var(--muted); font-size: 22px; margin-top: 6px; }
+.stage-tag { font-size: 14px; color: var(--gold); text-align: center; }
+.status { text-align: center; color: var(--green); font-size: 22px; margin-top: 18px; font-weight: 500; }
+.meter-l { display: flex; justify-content: space-between; font-size: 20px; color: var(--muted); margin-top: 40px; }
+.meter-l b { color: #fff; font-size: 24px; }
+.meter { height: 18px; border-radius: 3px; background: var(--panel-2); margin-top: 12px; overflow: hidden; }
+.meter i { display: block; height: 100%; }
+.chk { display: flex; justify-content: space-between; font-size: 20px; color: var(--muted); margin-top: 22px; }
+.chk b { color: #fff; }
+.chk.met b { color: var(--green); }
+#hud { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 34px; background: var(--panel-2); border-radius: 10px; padding: 16px; text-align: center; }
+#hud small { display: block; font-size: 14px; color: var(--muted); letter-spacing: .08em; }
+#hud .pixel { display: block; font-size: 22px; margin-top: 12px; }
+#chat { position: absolute; left: 460px; right: 0; top: 0; bottom: 120px; overflow: hidden; }
+#chatInner { position: absolute; left: 50px; right: 50px; top: 40px; }
+.bub { max-width: 780px; padding: 20px 26px; border-radius: 16px; font-size: 29px; line-height: 1.35; margin-bottom: 22px; width: fit-content; }
+.bub small { display: block; font-size: 15px; letter-spacing: .08em; color: var(--muted); margin-bottom: 6px; font-weight: 700; text-transform: uppercase; }
+.bub.b { background: var(--panel-2); border: 2px solid var(--line); border-bottom-left-radius: 4px; }
+.bub.r { margin-left: auto; background: #3a2418; border: 2px solid #6e3b22; border-bottom-right-radius: 4px; }
+#micbar { position: absolute; left: 460px; right: 0; bottom: 0; height: 120px; border-top: 2px solid var(--line); display: flex; align-items: center; gap: 24px; padding: 0 50px; }
+.mic { width: 64px; height: 64px; border-radius: 50%; background: var(--red); display: grid; place-items: center; }
+.mic svg { width: 30px; height: 30px; }
+#bars { display: flex; gap: 7px; align-items: center; height: 70px; }
+#bars i { width: 8px; border-radius: 2px; background: var(--accent); }
+.mictext { font-size: 24px; color: var(--muted); }
+.popup { font-weight: 800; font-size: 34px; white-space: nowrap; padding: 12px 22px; border-radius: 10px; }
+.popup.good { color: #08170e; background: var(--green); box-shadow: 0 6px 0 #1f9d5a; }
+.popup.pain { color: #1d1604; background: var(--gold); box-shadow: 0 6px 0 #b08f14; }
+.popup.obj { color: #fff; background: #d9423e; box-shadow: 0 6px 0 #8f2522; }
+.popup.combo { color: var(--ink); background: var(--accent); box-shadow: 0 6px 0 var(--accent-dark); }
+#stamp { left: 50%; top: 50%; width: 900px; margin-left: -450px; margin-top: -120px; text-align: center; font-size: 84px; color: var(--ink);
+  border-radius: 20px; padding: 36px 20px; background: var(--accent); box-shadow: 0 14px 0 var(--accent-dark); z-index: 30; }
+#stamp small { display: block; font-size: 34px; margin-top: 18px; color: #fff; }
+.conf { position: absolute; width: 16px; height: 16px; z-index: 31; }
+
+/* S6 cast */
+#wall { position: absolute; left: 110px; top: 250px; width: 1700px; display: grid; grid-template-columns: repeat(10, 1fr); gap: 16px; }
+.tile { height: 160px; border-radius: 12px; background: var(--panel); border: 2px solid var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+.tile .av { width: 70px; height: 70px; border-radius: 50%; display: grid; place-items: center; font-size: 24px; font-weight: 800; color: #fff; }
+.tile .nm { font-size: 16px; font-weight: 700; text-align: center; padding: 0 8px; line-height: 1.2; }
+.tile .bs { font-family: "Press Start 2P", monospace; font-size: 9px; color: var(--gold); }
+
+/* S7 modes */
+.mode-label { font-size: 26px; letter-spacing: .12em; }
+.mode-title { font-size: 92px; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+.mode-sub { font-size: 32px; color: var(--muted); }
+.mscene { position: absolute; inset: 0; }
+.ring { width: 360px; height: 360px; }
+.hearts { font-size: 70px; letter-spacing: 12px; color: var(--red); }
+.hearts span { color: #45464e; }
+.objcard { font-size: 44px; font-weight: 700; padding: 34px 44px; border-radius: 16px; background: var(--panel-2); border: 2px solid var(--line); }
+.mline { height: 64px; border-radius: 12px; background: var(--panel-2); display: flex; align-items: center; padding: 0 26px; font-size: 26px; color: #cfd0d6; }
+.mline.rep { background: #13303b; color: #e2f7ff; }
+.cross { width: 120px; height: 120px; border: 5px solid var(--red); border-radius: 50%; }
+.cross::before, .cross::after { content: ""; position: absolute; background: var(--red); }
+.cross::before { left: 50%; top: -30px; bottom: -30px; width: 5px; margin-left: -2.5px; }
+.cross::after { top: 50%; left: -30px; right: -30px; height: 5px; margin-top: -2.5px; }
+.deal { font-size: 54px; font-weight: 800; color: var(--green); }
+.copt { font-size: 28px; padding: 20px 26px; border-radius: 12px; background: var(--panel); border: 2px solid var(--line); display: flex; gap: 20px; align-items: center; }
+.copt b { font-family: "Press Start 2P", monospace; font-size: 18px; color: var(--muted); }
+.copt.win { border-color: var(--green); background: #15241c; }
+.copt.win b { color: var(--green); }
+.inputbox { width: 1000px; min-height: 170px; padding: 30px 36px; border-radius: 16px; background: var(--panel-2); border: 2px solid var(--line); font-size: 36px; line-height: 1.4; color: #f3f2ef; }
+.caret { display: inline-block; width: 4px; height: 42px; background: var(--accent); vertical-align: middle; margin-left: 4px; }
+.gen { width: 560px; padding: 34px; border-radius: 16px; background: var(--panel); border: 3px solid var(--accent); display: flex; gap: 26px; align-items: center; }
+.gen .av { width: 120px; height: 120px; border-radius: 50%; display: grid; place-items: center; font-size: 40px; font-weight: 800; background: #4f46e5; color: #fff; flex: none; }
+
+/* S8 scorecard */
+#ringWrap { left: 180px; top: 300px; width: 460px; height: 460px; }
+.ringnum { position: absolute; inset: 0; display: grid; place-items: center; font-size: 150px; font-weight: 800; }
+.ringlbl { position: absolute; left: 0; right: 0; top: 330px; text-align: center; color: var(--muted); font-size: 26px; }
+.pts { font-size: 64px; color: var(--gold); }
+.badge { width: 460px; padding: 18px 24px; border-radius: 10px; background: var(--panel-2); border: 2px solid var(--line); border-left: 8px solid var(--green); }
+.badge b { font-size: 28px; display: block; }
+.badge span { font-size: 22px; color: var(--green); font-weight: 700; }
+.rankup { font-size: 34px; font-weight: 800; padding: 22px 34px; border-radius: 12px; background: var(--accent); color: var(--ink); box-shadow: 0 8px 0 var(--accent-dark); }
+#board { left: 1320px; top: 300px; width: 440px; height: 470px; border-radius: 16px; background: var(--panel); border: 2px solid var(--line); overflow: hidden; }
+#board .hd { font-size: 16px; color: var(--gold); padding: 24px 26px 10px; }
+.lrow { position: absolute; left: 16px; right: 16px; height: 58px; border-radius: 8px; display: flex; align-items: center; gap: 18px; padding: 0 16px; font-size: 24px; font-weight: 500; }
+.lrow .pos { font-family: "Press Start 2P", monospace; font-size: 16px; color: var(--muted); width: 36px; }
+.lrow .sc { margin-left: auto; font-family: "Press Start 2P", monospace; font-size: 15px; color: #f3f2ef; }
+.lrow.me { background: #3a2418; border: 2px solid var(--accent); }
+
+/* S9 end */
+.tag1 { font-size: 104px; font-weight: 800; letter-spacing: -.02em; line-height: 1.05; }
+.cta { display: inline-block; font-size: 34px; font-weight: 800; padding: 26px 56px; border-radius: 14px; color: var(--ink); background: var(--accent); box-shadow: 0 10px 0 var(--accent-dark); }
+.cta .tri { display: inline-block; width: 0; height: 0; border-left: 22px solid var(--ink); border-top: 14px solid transparent; border-bottom: 14px solid transparent; margin-right: 18px; vertical-align: -2px; }
+.press { font-size: 22px; color: var(--gold); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bg">
+    <div id="floor"></div>
+  </div>
+
+  <!-- S1: cold open -->
+  <section class="scene" id="s1">
+    <div class="abs wave" id="w1"></div><div class="abs wave" id="w2"></div><div class="abs wave" id="w3"></div>
+    <div class="abs phone-ic" id="phone"><svg viewBox="0 0 24 24" fill="#17110d"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></div>
+    <div class="abs center pixel" id="incoming" style="top:245px;font-size:22px;color:#ff6b35">CALLING...</div>
+    <div class="abs center big-line" id="s1a" style="top:600px">Remember your first cold call?</div>
+    <div class="abs center big-line" id="s1b" style="top:710px;color:#ff5c5c">It did not go well.</div>
+  </section>
+
+  <!-- S2: rejection barrage -->
+  <section class="scene" id="s2"></section>
+
+  <!-- S3: the problem -->
+  <section class="scene" id="s3">
+    <div class="abs center big-line" id="s3a" style="top:380px">Most reps learn on real customers.</div>
+    <div class="abs center big-line" id="s3b" style="top:500px">...and <em>burn real deals</em> doing it.</div>
+  </section>
+
+  <!-- S4: logo -->
+  <section class="scene" id="s4">
+    <div class="abs center pixel" id="insert" style="top:300px;font-size:26px;color:#ffd23f">INSERT COIN</div>
+    <div class="abs center pixel logo" id="logo" style="top:390px">CALLCADE</div>
+    <div class="abs center pixel sub" id="sub" style="top:600px">THE SALES CALL ARCADE</div>
+    <div class="abs center" id="chips" style="top:700px;display:flex;justify-content:center;gap:24px">
+      <span class="chip" id="c1"><i style="background:#ff6b35"></i>Talk out loud</span><span class="chip" id="c2"><i style="background:#4cc9f0"></i>AI buyers that push back</span><span class="chip" id="c3"><i style="background:#ffd23f"></i>Real scores</span>
+    </div>
+  </section>
+
+  <!-- S5: the call -->
+  <section class="scene" id="s5">
+    <div class="abs center caption" id="cap" style="top:88px"></div>
+    <div class="abs" id="win">
+      <div id="side">
+        <div class="pixel stage-tag">STAGE 8 · FINAL BOSS</div>
+        <div class="boss-av" id="bossav">VH</div>
+        <div class="side-name">Victor</div>
+        <div class="side-role">CEO · Meridian Hotels</div>
+        <div class="status">● On the call <span id="clock">0:00</span></div>
+        <div id="hud"><div><small>POINTS</small><span class="pixel" id="hpts">0</span></div><div><small>COMBO</small><span class="pixel" id="hcombo" style="color:#ff6b35">–</span></div></div>
+        <div class="meter-l"><span>Buyer interest</span><b id="mval">30</b></div>
+        <div class="meter"><i id="mfill"></i></div>
+        <div class="chk" id="chk1"><span>Objections turned around</span><b id="obj">0 / 1</b></div>
+        <div class="chk" id="chk2"><span>Hidden problems found</span><b id="pain">0</b></div>
+      </div>
+      <div id="chat"><div id="chatInner"></div></div>
+      <div id="micbar"><div class="mic"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11z"/></svg></div><div id="bars"></div><div class="mictext" id="mictext">Listening… just talk</div></div>
+    </div>
+    <div id="pops"></div>
+    <div class="abs pixel" id="stamp">MEETING BOOKED<small>+150 PTS</small></div>
+    <div id="confetti"></div>
+  </section>
+
+  <!-- S6: cast wall -->
+  <section class="scene" id="s6">
+    <div class="abs center caption" id="castcap" style="top:110px"></div>
+    <div id="wall"></div>
+  </section>
+
+  <!-- S7: modes -->
+  <section class="scene" id="s7">
+    <div class="abs pixel mode-label" style="left:140px;top:120px;color:#b0b2ba">GAME MODES</div>
+    <div class="mscene" id="m1">
+      <div class="abs" style="left:140px;top:330px"><div class="pixel mode-label" style="color:#ff5c8a">SPEED ROUND</div>
+        <div class="mode-title" style="margin-top:26px">Objection<br>Gauntlet</div><div class="mode-sub" style="margin-top:26px">10 objections. Shrinking clock. 3 lives.</div></div>
+      <svg class="abs ring" style="left:1190px;top:170px" viewBox="0 0 360 360"><circle cx="180" cy="180" r="160" fill="none" stroke="#232429" stroke-width="22"/>
+        <circle id="gring" cx="180" cy="180" r="160" fill="none" stroke="#ff5c8a" stroke-width="22" stroke-linecap="round" transform="rotate(-90 180 180)" stroke-dasharray="1005 1005"/>
+        <text id="gnum" x="180" y="212" text-anchor="middle" font-family="Press Start 2P" font-size="80" fill="#fff">15</text></svg>
+      <div class="abs hearts" id="hearts" style="left:1235px;top:560px">♥♥♥</div>
+      <div class="abs objcard" id="gobj" style="left:1010px;top:700px">“Your price is way too high.”</div>
+    </div>
+    <div class="mscene" id="m2">
+      <div class="abs" style="left:140px;top:330px"><div class="pixel mode-label" style="color:#4cc9f0">DETECTIVE</div>
+        <div class="mode-title" style="margin-top:26px">Spot the<br>Mistake</div><div class="mode-sub" style="margin-top:26px">Find the line where the rep blew it.</div></div>
+      <div class="abs" style="left:1000px;top:260px;width:760px;display:flex;flex-direction:column;gap:22px">
+        <div class="mline">“We already use Cost Explorer.”</div>
+        <div class="mline rep" id="ml2" style="align-self:flex-end">“Honestly, it's outdated. Ours is better.”</div>
+        <div class="mline">“...Okay. It works fine for us.”</div>
+        <div class="mline rep" style="align-self:flex-end">“Fair. What do you like about it?”</div>
+      </div>
+      <div class="abs cross" id="cross"></div>
+      <div class="abs" id="caught" style="left:1000px;top:640px;font-size:34px;font-weight:900;color:#ff5c5c">✗ Trashed what they already use</div>
+    </div>
+    <div class="mscene" id="m3">
+      <div class="abs" style="left:140px;top:330px"><div class="pixel mode-label" style="color:#3ddc84">HIGH PRESSURE</div>
+        <div class="mode-title" style="margin-top:26px">Clutch<br>Call</div><div class="mode-sub" style="margin-top:26px">The deal is slipping. Pick the line that saves it.</div></div>
+      <div class="abs objcard" id="cq" style="left:960px;top:170px;font-size:36px;max-width:820px">“Honestly? We're going with the cheaper option.”</div>
+      <div class="abs" id="copts" style="left:960px;top:360px;width:820px;display:grid;gap:16px">
+        <div class="copt" id="co0"><b>A</b>“I can match their price today.”</div>
+        <div class="copt" id="co1"><b>B</b>“Makes sense. What made them feel like the safer bet?”</div>
+        <div class="copt" id="co2"><b>C</b>“You get what you pay for, honestly.”</div>
+        <div class="copt" id="co3"><b>D</b>“No problem, I'll send over our pricing.”</div>
+      </div>
+      <div class="abs deal" id="deal" style="left:960px;top:830px;font-size:44px">✓ Deal saved · +300</div>
+    </div>
+    <div class="mscene" id="m4">
+      <div class="abs" style="left:140px;top:330px"><div class="pixel mode-label" style="color:#ff6b35">CUSTOM</div>
+        <div class="mode-title" style="margin-top:26px">Build Your<br>Own Buyer</div><div class="mode-sub" style="margin-top:26px">Describe them. Then call them.</div></div>
+      <div class="abs inputbox" id="typebox" style="left:800px;top:230px"><span id="typed"></span><span class="caret" id="caret"></span></div>
+      <div class="abs gen" id="gen" style="left:1020px;top:520px"><div class="av">SS</div>
+        <div><div class="pixel" style="font-size:14px;color:#ff6b35">MEET YOUR BUYER</div><div style="font-size:44px;font-weight:900;margin-top:10px">Spreadsheet Stan</div>
+        <div style="font-size:24px;color:#b0b2ba;margin-top:6px">CFO · ★★★★☆ · hates software</div></div></div>
+    </div>
+  </section>
+
+  <!-- S8: scorecard -->
+  <section class="scene" id="s8">
+    <div class="abs center caption" style="top:110px">Get <em>scored and coached</em> on every call.</div>
+    <div class="abs" id="ringWrap">
+      <svg width="460" height="460" viewBox="0 0 460 460"><circle cx="230" cy="230" r="200" fill="none" stroke="#232429" stroke-width="30"/>
+        <circle id="sring" cx="230" cy="230" r="200" fill="none" stroke="#ff6b35" stroke-width="30" stroke-linecap="round" transform="rotate(-90 230 230)" stroke-dasharray="0 1257"/></svg>
+      <div class="ringnum" id="snum">0</div><div class="ringlbl">skill score</div>
+    </div>
+    <div class="abs pixel pts" id="spts" style="left:720px;top:300px">0 PTS</div>
+    <div class="abs" id="badges" style="left:720px;top:440px;display:grid;grid-template-columns:1fr;gap:16px"></div>
+    <div class="abs rankup" id="rankup" style="left:720px;top:800px">RANK UP · Account Executive</div>
+    <div class="abs" id="board"><div class="pixel hd">HIGH SCORES</div></div>
+  </section>
+
+  <!-- S9: end card -->
+  <section class="scene" id="s9">
+    <div class="abs center tag1" id="e1" style="top:250px">Practice the call</div>
+    <div class="abs center tag1" id="e2" style="top:370px"><em>before it counts.</em></div>
+    <div class="abs center pixel logo" id="elogo" style="top:560px;font-size:84px">CALLCADE</div>
+    <div class="abs center" id="ecta" style="top:720px"><span class="cta"><span class="tri"></span>PLAY FREE</span></div>
+    <div class="abs center pixel press" id="epress" style="top:880px">PRESS START</div>
+  </section>
+
+  <div class="pixel" id="corner">CALLCADE</div>
+  <div id="vignette"></div>
+  <div id="scan"></div>
+  <div id="flash"></div>
+  <div id="fade"></div>
+</div>
+
+<script>
+// Callcade trailer. Everything is a function of time t, so it looks the same
+// live in the browser and when it's rendered frame by frame into the MP4.
+const DURATION = 45;
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const E = {
+  lin: (x) => x,
+  out: (x) => 1 - Math.pow(1 - x, 3),
+  in: (x) => x * x * x,
+  inOut: (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2),
+  back: (x) => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); },
+};
+const p = (t, a, b, e = E.out) => e(clamp((t - a) / (b - a)));
+const lerp = (a, b, k) => a + (b - a) * k;
+function put(el, o = 1, x = 0, y = 0, s = 1, r = 0, extra = "") {
+  el.style.opacity = o;
+  el.style.transform = `translate(${x}px, ${y}px) scale(${s}) rotate(${r}deg) ${extra}`;
+}
+// a pop-in: fade + slide up + a little overshoot
+function pop(el, t, at, dur = 0.4, dy = 30, from = 0.85) {
+  const k = p(t, at, at + dur, E.back);
+  const o = p(t, at, at + dur * 0.6);
+  put(el, o, 0, (1 - k) * dy, lerp(from, 1, k));
+}
+function seeded(seed) { let s = seed; return () => (s = (s * 16807) % 2147483647) / 2147483647; }
+
+// scene windows [start, end]
+const S = { s1: [0, 4], s2: [4, 8], s3: [8, 11], s4: [11, 14.5], s5: [14.5, 24.5], s6: [24.5, 28.5], s7: [28.5, 34.5], s8: [34.5, 39], s9: [39, 45] };
+
+// ---------------- S2 rejection lines ----------------
+const SLAMS = [
+  ["Not interested.", 4.0, 960, 240, 120, -3, "#fff"],
+  ["Who is this?", 4.4, 500, 400, 96, 4, "#ff5c5c"],
+  ["Send me an email.", 4.8, 1400, 410, 86, -5, "#fff"],
+  ["We already have a vendor.", 5.2, 960, 560, 88, 2, "#ffd23f"],
+  ["Too expensive.", 5.6, 500, 720, 96, -4, "#fff"],
+  ["Call me next quarter.", 6.0, 1400, 730, 80, 4, "#ff6b35"],
+  ["How'd you get this number?", 6.4, 960, 90, 76, 2, "#ff5c5c"],
+  ["Take me off your list.", 6.8, 960, 880, 100, -2, "#fff"],
+];
+SLAMS.forEach(([text, , x, y, size, , color], i) => {
+  const d = document.createElement("div");
+  d.className = "abs slam";
+  d.id = "slam" + i;
+  d.textContent = text;
+  d.style.cssText = `left:${x}px;top:${y}px;font-size:${size}px;color:${color};margin-left:-960px;width:1920px;text-align:center;`;
+  $("s2").appendChild(d);
+});
+const ended = document.createElement("div");
+ended.className = "abs center pixel ended";
+ended.id = "ended";
+ended.style.top = "450px";
+ended.textContent = "CALL ENDED";
+$("s2").appendChild(ended);
+$("s2").insertAdjacentHTML("beforeend", `<svg class="abs" id="flat" viewBox="0 0 1400 160"><path id="flatpath" d="M0 80 L420 80 L470 20 L520 140 L560 60 L600 80 L1400 80" fill="none" stroke="#ff5c5c" stroke-width="6" stroke-linejoin="round"/></svg>`);
+
+// ---------------- S5 call ----------------
+const CHAT = [
+  ["b", "Hello?", 0.6],
+  ["r", "Hi Victor, it's Sam from Stayloop. Got thirty seconds?", 1.4],
+  ["b", "You've got twenty. Go.", 2.5],
+  ["r", "What's front desk turnover doing to your guest reviews?", 3.4],
+  ["b", "...Sixty percent a year. It's killing our scores.", 4.7],
+  ["b", "But we already have a vendor for that.", 6.2],
+  ["r", "Makes sense. What would they have to fix for you to stay?", 7.1],
+  ["b", "...Fine. Thursday, nine AM. Don't be late.", 8.4],
+];
+CHAT.forEach(([who, text], i) => {
+  const d = document.createElement("div");
+  d.className = "bub " + who;
+  d.id = "bub" + i;
+  d.innerHTML = `<small>${who === "b" ? "Victor" : "You"}</small>${text}`;
+  $("chatInner").appendChild(d);
+});
+// [text, class, at (local), x, y]
+const POPS = [
+  ["+8  GOOD QUESTION", "good", 4.0, 1120, 560],
+  ["HIDDEN PAIN FOUND", "pain", 5.1, 740, 700],
+  ["OBJECTION", "obj", 6.5, 740, 800],
+  ["✓ TURNED IT AROUND  +9 ×3", "combo", 7.7, 1040, 640],
+];
+POPS.forEach(([text, cls], i) => {
+  const d = document.createElement("div");
+  d.className = "abs popup " + cls;
+  d.id = "pop" + i;
+  d.textContent = text;
+  $("pops").appendChild(d);
+});
+for (let i = 0; i < 34; i++) $("bars").insertAdjacentHTML("beforeend", "<i></i>");
+const confRand = seeded(7);
+const CONF = [];
+const confColors = ["#ff6b35", "#ffd23f", "#3ddc84", "#4cc9f0", "#ff5c8a", "#fff"];
+for (let i = 0; i < 90; i++) {
+  const d = document.createElement("div");
+  d.className = "conf";
+  d.style.background = confColors[i % confColors.length];
+  $("confetti").appendChild(d);
+  CONF.push({ el: d, vx: (confRand() - 0.5) * 1900, vy: -500 - confRand() * 1100, spin: (confRand() - 0.5) * 1400 });
+}
+// mood during the call: [local time, value]
+const MOOD = [[0, 30], [3.9, 30], [4.2, 38], [5.2, 47], [6.6, 43], [7.8, 60], [8.6, 72], [9.2, 80]];
+function moodAt(lt) {
+  let v = MOOD[0][1];
+  for (let i = 1; i < MOOD.length; i++) {
+    const [ta, va] = MOOD[i - 1], [tb, vb] = MOOD[i];
+    if (lt >= ta) v = lerp(va, vb, p(lt, ta, tb === ta ? ta + 0.01 : Math.min(tb, ta + 0.5), E.out));
+  }
+  return v;
+}
+
+// ---------------- S6 cast ----------------
+let CAST = [];
+async function loadCast() {
+  try {
+    const cats = await (await fetch("/api/categories")).json();
+    CAST = cats.flatMap((c) => c.characters.map((ch) => ({ nick: ch.nickname, color: ch.color, boss: !!ch.boss })));
+  } catch (e) {
+    CAST = Array.from({ length: 40 }, (_, i) => ({ nick: "Buyer " + (i + 1), color: ["#ff6b35", "#c4491c"], boss: i % 8 === 7 }));
+  }
+  CAST.forEach((c, i) => {
+    const d = document.createElement("div");
+    d.className = "tile";
+    d.id = "tile" + i;
+    const ini = c.nick.split(/[\s-]+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+    d.innerHTML = `<div class="av" style="background:${c.color[1]}">${ini}</div><div class="nm">${c.nick}</div>${c.boss ? '<div class="bs">BOSS</div>' : ""}`;
+    if (c.boss) d.style.borderColor = "#ffd23f";
+    $("wall").appendChild(d);
+  });
+}
+
+// ---------------- S8 ----------------
+const BADGES = [["Pain Hunter", "+50"], ["Objection Crusher", "+50"], ["Combo King", "+30"]];
+BADGES.forEach(([n, pts], i) => $("badges").insertAdjacentHTML("beforeend",
+  `<div class="badge" id="badge${i}"><b>${n}</b><span>${pts}</span></div>`));
+const BOARD = [["Jess M.", 2410], ["Marco R.", 2280], ["Priya K.", 2155], ["Dev P.", 1990], ["Alex T.", 1840]];
+BOARD.forEach(([n, sc], i) => $("board").insertAdjacentHTML("beforeend",
+  `<div class="lrow" id="lrow${i}"><span class="pos">${i + 1}</span>${n}<span class="sc">${sc.toLocaleString()}</span></div>`));
+$("board").insertAdjacentHTML("beforeend", `<div class="lrow me" id="lme"><span class="pos" id="mepos">6</span>You<span class="sc" id="mesc">1,275</span></div>`);
+
+// ---------------- the render loop ----------------
+const TYPE_TEXT = "My toughest customer is a CFO who thinks software is a waste of money and still runs everything on spreadsheets.";
+
+function sceneOpacity(t, [a, b], fadeIn = 0.25, fadeOut = 0.25) {
+  if (t < a || t > b) return 0;
+  return Math.min(p(t, a, a + fadeIn, E.lin), 1 - p(t, b - fadeOut, b, E.lin));
+}
+
+function render(t) {
+  // background drift
+  $("floor").style.backgroundPosition = `0 ${(t * 120) % 90}px, 0 0`;
+  const floorOn = Math.max(sceneOpacity(t, S.s4, 0.2, 0.5), sceneOpacity(t, S.s9, 0.6, 0.8), 0.18 * sceneOpacity(t, [14.5, 39], 0.5, 0.5));
+  $("floor").style.opacity = floorOn;
+
+  for (const id in S) $(id).style.opacity = sceneOpacity(t, S[id], id === "s2" ? 0.01 : 0.25, id === "s2" ? 0.05 : 0.3);
+
+  // flashes on big cuts
+  let flash = 0;
+  for (const [at, strength] of [[11, 0.9], [14.5, 0.25], [24.5, 0.2], [28.5, 0.2], [34.5, 0.2], [39, 0.6]]) {
+    if (t >= at) flash = Math.max(flash, strength * (1 - p(t, at, at + 0.45, E.out)));
+  }
+  $("flash").style.opacity = flash;
+  $("fade").style.opacity = p(t, 44.2, 45, E.lin);
+  $("corner").style.opacity = Math.min(p(t, 14.5, 15.2), 1 - p(t, 38.5, 39)) * 0.8;
+
+  // ---- S1
+  if (t < 4.2) {
+    const ringOn = t < 2.9 ? 1 : 1 - p(t, 2.9, 3.2);
+    [["w1", 0], ["w2", 0.33], ["w3", 0.66]].forEach(([id, off]) => {
+      const k = (t * 0.9 + off) % 1;
+      put($(id), (1 - k) * ringOn * 0.9, 0, 0, 1 + k * 1.6);
+    });
+    const shake = t < 2.9 ? Math.sin(t * 60) * 5 * (Math.sin(t * 5) > 0 ? 1 : 0) : 0;
+    put($("phone"), p(t, 0, 0.4), 0, 0, 1, shake);
+    put($("incoming"), (Math.floor(t * 2.5) % 2 ? 1 : 0.35) * (1 - p(t, 2.9, 3.1)), 0, 0);
+    pop($("s1a"), t, 0.7, 0.5);
+    pop($("s1b"), t, 2.4, 0.35, 0, 1.3);
+    if (t > 2.4 && t < 2.8) $("s1b").style.transform += ` translateX(${Math.sin(t * 90) * 8}px)`;
+  }
+
+  // ---- S2
+  if (t >= 3.9 && t <= 8.1) {
+    SLAMS.forEach(([, at, , , , rot], i) => {
+      const el = $("slam" + i);
+      const k = p(t, at, at + 0.14, E.out);
+      const gone = p(t, 7.25, 7.45, E.in);
+      const sh = t > at && t < at + 0.25 ? Math.sin(t * 120) * 10 * (1 - (t - at) / 0.25) : 0;
+      put(el, k * (1 - gone) * (t < at ? 0 : 1), sh, gone * 80, lerp(2.4, 1, k), rot);
+    });
+    const e = p(t, 7.45, 7.6);
+    put($("ended"), e * (Math.floor(t * 4) % 2 ? 1 : 0.6), 0, 0, lerp(1.3, 1, e));
+    const fl = p(t, 7.5, 8.0, E.lin);
+    $("flat").style.opacity = fl > 0 ? 1 : 0;
+    $("flatpath").style.strokeDasharray = `${fl * 1600} 1600`;
+    // screen shake on each slam
+    let shake = 0;
+    SLAMS.forEach(([, at]) => { if (t > at && t < at + 0.12) shake = Math.sin(t * 150) * 12; });
+    $("s2").style.transform = `translate(${shake}px, ${shake * 0.4}px)`;
+  }
+
+  // ---- S3
+  if (t >= 7.9 && t <= 11.2) {
+    pop($("s3a"), t, 8.15, 0.5);
+    pop($("s3b"), t, 9.1, 0.5);
+  }
+
+  // ---- S4 logo
+  if (t >= 10.9 && t <= 14.7) {
+    pop($("insert"), t, 11.05, 0.3, 0, 1);
+    $("insert").style.opacity = Math.min(1, p(t, 11.05, 11.2)) * (Math.floor(t * 3) % 2 ? 1 : 0.4);
+    const k = p(t, 11.0, 11.6, E.back);
+    const split = 26 * (1 - p(t, 11.0, 11.9, E.out));
+    put($("logo"), p(t, 11, 11.15), 0, 0, lerp(1.6, 1, k));
+    // glitchy split that settles into a hard pixel drop shadow, like the site logo
+    const drop = 10 * p(t, 11.6, 12.0);
+    $("logo").style.textShadow = `${split}px 0 #ff5c5c, ${-split}px 0 #ffd23f, ${drop}px ${drop}px 0 #5a2412`;
+    const sk = p(t, 11.9, 12.5);
+    put($("sub"), sk, 0, (1 - sk) * 20);
+    $("sub").style.letterSpacing = lerp(0.6, 0.18, sk) + "em";
+    ["c1", "c2", "c3"].forEach((id, i) => pop($(id), t, 12.7 + i * 0.22, 0.4));
+  }
+
+  // ---- S5 call
+  if (t >= 14.3 && t <= 24.7) {
+    const lt = t - 14.5;
+    const caps = [[0.2, "Talk out loud. <em>They talk back.</em>"], [4.6, "Find what they're <em>hiding.</em>"], [6.3, "Handle the <em>pushback.</em>"], [8.3, "Book the <em>meeting.</em>"]];
+    let cap = caps[0], capAt = caps[0][0];
+    for (const c of caps) if (lt >= c[0]) { cap = c; capAt = c[0]; }
+    if ($("cap").dataset.v !== cap[1]) { $("cap").innerHTML = cap[1]; $("cap").dataset.v = cap[1]; }
+    pop($("cap"), lt, capAt, 0.35, 20);
+    const wk = p(lt, 0, 0.7, E.out);
+    const wout = p(lt, 9.6, 10.0, E.in);
+    put($("win"), wk * (1 - wout), 0, (1 - wk) * 120 - wout * 60, lerp(0.94, 1, wk));
+    // bubbles + scrolling
+    let height = 0;
+    CHAT.forEach(([, , at], i) => {
+      const el = $("bub" + i);
+      const k = p(lt, at, at + 0.35, E.back);
+      put(el, p(lt, at, at + 0.2), 0, (1 - k) * 24, lerp(0.9, 1, k));
+      if (lt >= at) height += (el.offsetHeight + 22) * p(lt, at, at + 0.35, E.out);
+    });
+    const view = 800 - 120 - 60;
+    $("chatInner").style.transform = `translateY(${-Math.max(0, height - view)}px)`;
+    // who is talking
+    const repTalking = CHAT.some(([w, , at], i) => w === "r" && lt > at - 0.9 && lt < at);
+    $("mictext").textContent = repTalking ? "You're talking…" : lt > 8.8 ? "Call ended" : "Listening… just talk";
+    [...$("bars").children].forEach((b, i) => {
+      const h = repTalking ? 14 + Math.abs(Math.sin(lt * 14 + i * 0.7) * Math.cos(lt * 5 + i)) * 56 : 6 + Math.abs(Math.sin(lt * 2 + i)) * 4;
+      b.style.height = h + "px";
+      b.style.opacity = repTalking ? 1 : 0.4;
+    });
+    const boss = $("bossav");
+    const bossTalking = CHAT.some(([w, , at]) => w === "b" && lt > at && lt < at + 0.8);
+    boss.style.transform = `scale(${bossTalking ? 1 + Math.abs(Math.sin(lt * 18)) * 0.04 : 1})`;
+    boss.style.outlineColor = bossTalking ? "#3ddc84" : "transparent";
+    // hud
+    const m = moodAt(lt);
+    $("mval").textContent = Math.round(m);
+    $("mfill").style.width = m + "%";
+    $("mfill").style.background = m < 40 ? "#ff5c5c" : m < 60 ? "#ffc53d" : "#3ddc84";
+    const secs = Math.floor(lt * 3);
+    $("clock").textContent = `0:${String(Math.min(59, secs)).padStart(2, "0")}`;
+    const pts = lt < 4 ? 0 : lt < 5.1 ? 8 : lt < 7.7 ? 26 : lt < 9.1 ? 53 : 203;
+    $("hpts").textContent = pts;
+    $("hcombo").textContent = lt < 4 ? "–" : lt < 7.7 ? "×2" : "×3";
+    $("obj").textContent = lt < 7.7 ? "0 / 1" : "1 / 1";
+    $("chk1").classList.toggle("met", lt >= 7.7);
+    $("pain").textContent = lt < 5.1 ? "0" : "1";
+    $("chk2").classList.toggle("met", lt >= 5.1);
+    // popups
+    POPS.forEach(([, , at, x, y], i) => {
+      const el = $("pop" + i);
+      const k = p(lt, at, at + 0.3, E.back);
+      const out = p(lt, at + 1.3, at + 1.6, E.in);
+      el.style.left = x + "px";
+      el.style.top = y + "px";
+      put(el, p(lt, at, at + 0.15) * (1 - out), 0, (1 - k) * 30 - out * 40, lerp(0.5, 1, k), -3);
+    });
+    // stamp + confetti
+    const sk = p(lt, 9.0, 9.25, E.back);
+    put($("stamp"), p(lt, 9.0, 9.08) * (1 - p(lt, 9.8, 10, E.lin)), 0, 0, lerp(2.6, 1, sk), -6);
+    const ct = lt - 9.05;
+    CONF.forEach((c) => {
+      if (ct < 0) { c.el.style.opacity = 0; return; }
+      const x = 960 + c.vx * ct;
+      const y = 540 + c.vy * ct + 1500 * ct * ct;
+      c.el.style.opacity = 1 - p(lt, 9.7, 10);
+      c.el.style.transform = `translate(${x}px, ${y}px) rotate(${c.spin * ct}deg)`;
+    });
+  }
+
+  // ---- S6 cast
+  if (t >= 24.3 && t <= 28.7) {
+    const lt = t - 24.5;
+    const capText = lt < 2.1 ? "40 AI buyers. <em>Every one is different.</em>" : "5 final bosses. <em>Good luck.</em>";
+    if ($("castcap").dataset.v !== capText) { $("castcap").innerHTML = capText; $("castcap").dataset.v = capText; }
+    pop($("castcap"), lt, lt < 2.1 ? 0.1 : 2.1, 0.35, 20);
+    CAST.forEach((c, i) => {
+      const el = $("tile" + i);
+      if (!el) return;
+      const at = 0.15 + (i % 10) * 0.035 + Math.floor(i / 10) * 0.12;
+      const k = p(lt, at, at + 0.45, E.back);
+      const focus = p(lt, 2.1, 2.5);
+      const dim = c.boss ? 1 : 1 - focus * 0.78;
+      const sc = lerp(0.4, 1, k) * (c.boss ? 1 + focus * 0.12 : 1);
+      put(el, p(lt, at, at + 0.2) * dim, 0, (1 - k) * 80, sc);
+      el.style.boxShadow = c.boss ? `0 ${8 * focus}px 0 #b08f14` : "none";
+      el.style.zIndex = c.boss ? 2 : 1;
+    });
+  }
+
+  // ---- S7 modes (1.5s each, whip transitions)
+  if (t >= 28.3 && t <= 34.7) {
+    const lt = t - 28.5;
+    ["m1", "m2", "m3", "m4"].forEach((id, i) => {
+      const a = i * 1.5, b = a + 1.5;
+      const inK = p(lt, a - 0.05, a + 0.3, E.out);
+      const outK = i === 3 ? 0 : p(lt, b - 0.2, b + 0.05, E.in);
+      const on = lt >= a - 0.1 && lt <= b + 0.1;
+      $(id).style.opacity = on ? inK * (1 - outK) : 0;
+      $(id).style.transform = `translateX(${(1 - inK) * 300 - outK * 300}px) skewX(${(1 - inK) * -8 + outK * 8}deg)`;
+    });
+    // gauntlet
+    const g = clamp((lt - 0.1) / 1.3);
+    const left = Math.max(0, Math.ceil(15 * (1 - g)));
+    $("gnum").textContent = left;
+    $("gring").style.strokeDasharray = `${1005 * (1 - g)} 1005`;
+    $("gring").style.stroke = left > 8 ? "#ff5c8a" : left > 4 ? "#ffc53d" : "#ff5c5c";
+    $("hearts").innerHTML = lt < 0.9 ? "♥♥♥" : "♥♥<span>♥</span>";
+    $("hearts").style.transform = lt > 0.9 && lt < 1.1 ? `translateX(${Math.sin(lt * 120) * 10}px)` : "";
+    pop($("gobj"), lt, 0.15, 0.35);
+    // mistake
+    const m2 = lt - 1.5;
+    const cx = lerp(1700, 1360, p(m2, 0.1, 0.7, E.inOut)), cy = lerp(620, 318, p(m2, 0.1, 0.7, E.inOut));
+    put($("cross"), p(m2, 0, 0.2), cx - 60, cy - 60, 1 + (m2 > 0.7 ? 0.15 * Math.sin((m2 - 0.7) * 20) * (1 - p(m2, 0.7, 1.1)) : 0));
+    $("ml2").style.boxShadow = m2 > 0.75 ? "0 0 0 4px #ff5c5c" : "none";
+    $("ml2").style.background = m2 > 0.75 ? "#3a1a1b" : "";
+    pop($("caught"), m2, 0.8, 0.3);
+    // clutch call: options appear, the right one lights up
+    const m3 = lt - 3.0;
+    pop($("cq"), m3, 0.05, 0.3);
+    [0, 1, 2, 3].forEach((i) => {
+      pop($("co" + i), m3, 0.2 + i * 0.08, 0.3, 20);
+      const picked = m3 > 0.85;
+      $("co" + i).classList.toggle("win", picked && i === 1);
+      if (picked && i !== 1) $("co" + i).style.opacity = 0.3;
+    });
+    pop($("deal"), m3, 1.0, 0.3, 20, 0.6);
+    // build a buyer
+    const m4 = lt - 4.5;
+    const n = Math.floor(clamp(m4 / 0.85) * TYPE_TEXT.length);
+    $("typed").textContent = TYPE_TEXT.slice(0, n);
+    $("caret").style.opacity = Math.floor(t * 4) % 2 ? 1 : 0.2;
+    pop($("gen"), m4, 1.0, 0.4, 40, 0.7);
+    put($("typebox"), 1 - p(m4, 1.0, 1.3) * 0.5, 0, -p(m4, 1.0, 1.3) * 40);
+  }
+
+  // ---- S8 score
+  if (t >= 34.3 && t <= 39.2) {
+    const lt = t - 34.5;
+    const sk = p(lt, 0.2, 1.5, E.out);
+    const score = Math.round(94 * sk);
+    $("snum").textContent = score;
+    $("sring").style.strokeDasharray = `${1257 * 0.94 * sk} 1257`;
+    put($("ringWrap"), p(lt, 0, 0.3), 0, 0, lerp(0.85, 1, p(lt, 0, 0.5, E.back)));
+    const pts = Math.round(1275 * p(lt, 0.3, 1.6, E.out));
+    $("spts").textContent = pts.toLocaleString() + " PTS";
+    put($("spts"), p(lt, 0.2, 0.4), 0, 0, 1 + (lt > 1.6 && lt < 1.9 ? 0.08 * Math.sin((lt - 1.6) * 10) : 0));
+    BADGES.forEach((_, i) => pop($("badge" + i), lt, 1.2 + i * 0.3, 0.35, 0, 0.5));
+    pop($("rankup"), lt, 2.4, 0.4, 30, 0.7);
+    put($("board"), p(lt, 0.3, 0.7), (1 - p(lt, 0.3, 0.8)) * 80, 0);
+    // you climb from 6th to 1st
+    const climb = p(lt, 2.7, 3.7, E.inOut);
+    const myPlace = lerp(5, 0, climb);
+    BOARD.forEach((_, i) => {
+      const pushed = myPlace <= i ? 1 : clamp(1 - (myPlace - i));
+      $("lrow" + i).style.top = 76 + (i + pushed) * 62 + "px";
+      $("lrow" + i).querySelector(".pos").textContent = i + 1 + (pushed > 0.5 ? 1 : 0);
+    });
+    $("lme").style.top = 76 + myPlace * 62 + "px";
+    $("mepos").textContent = Math.round(myPlace) + 1;
+    $("mesc").textContent = lt < 2.7 ? "1,275" : (Math.round(lerp(1275, 2560, climb) / 5) * 5).toLocaleString();
+    $("lme").style.background = climb >= 1 ? "#ff6b35" : "#3a2418";
+    $("lme").style.color = climb >= 1 ? "#17110d" : "";
+  }
+
+  // ---- S9 end card
+  if (t >= 38.8) {
+    const lt = t - 39;
+    pop($("e1"), lt, 0.2, 0.5);
+    pop($("e2"), lt, 0.7, 0.5);
+    const lk = p(lt, 1.7, 2.3, E.back);
+    put($("elogo"), p(lt, 1.7, 1.9), 0, 0, lerp(1.5, 1, lk));
+    const split = 16 * (1 - p(lt, 1.7, 2.5));
+    $("elogo").style.textShadow = `${split}px 0 #ff5c5c, ${-split}px 0 #ffd23f, ${6 * lk}px ${6 * lk}px 0 #5a2412`;
+    pop($("ecta"), lt, 2.5, 0.45, 30, 0.6);
+    $("epress").style.opacity = lt > 3.1 ? (Math.floor(t * 2.5) % 2 ? 1 : 0.2) : 0;
+  }
+}
+
+// ---------------- playback ----------------
+function fit() {
+  const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+  $("stage").style.transform = `scale(${s})`;
+}
+const params = new URLSearchParams(location.search);
+window.ready = (async () => {
+  await document.fonts.ready;
+  await loadCast();
+  render(0);
+})();
+window.renderAt = (t) => render(t);
+
+if (!params.has("record")) {
+  addEventListener("resize", fit);
+  fit();
+  window.ready.then(() => {
+    const start = performance.now();
+    const loop = () => {
+      const t = ((performance.now() - start) / 1000) % DURATION;
+      render(t);
+      requestAnimationFrame(loop);
+    };
+    loop();
+  });
+}
+</script>
+</body>
+</html>

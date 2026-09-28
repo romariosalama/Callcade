@@ -1,0 +1,1139 @@
+{
+  "scenarios": [
+    {
+      "id": "cfo",
+      "title": "The Spreadsheet CFO",
+      "category": "tech",
+      "stars": 3,
+      "buyer": {
+        "name": "Linda Park",
+        "title": "CFO, Ridgeline Construction",
+        "color": [
+          "#93c5fd",
+          "#2563eb"
+        ]
+      },
+      "you": "Sam from Spendly. You sell expense software, about $6 to $9 per user a month.",
+      "goal": "Book a meeting with Linda and her CEO.",
+      "moments": [
+        {
+          "context": [
+            [
+              "buyer",
+              "Linda Park."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Hi Linda, it's Sam with Spendly. I'll be brief: we help construction firms close their books faster. Can I have 30 seconds to see if it's even relevant?",
+              "reaction": "...Thirty seconds. Go.",
+              "why": "Name, reason, and asking for a tiny slice of time. That lowers her guard."
+            },
+            {
+              "grade": "good",
+              "text": "Hi Linda, Sam from Spendly. Do you have a minute?",
+              "reaction": "Not really. What's it about?",
+              "why": "Polite, but it hands her an easy no and no reason to stay."
+            },
+            {
+              "grade": "bad",
+              "text": "Hi Linda! How's your day going so far?",
+              "reaction": "Busy. Who is this?",
+              "why": "Small talk on a cold call signals \"salesperson\" and wastes her first five seconds."
+            },
+            {
+              "grade": "worst",
+              "text": "Hi Linda, Spendly is the number one AI-powered expense platform, trusted by 5,000 companies, and I'd love to show you a demo.",
+              "reaction": "I'm going to stop you there.",
+              "why": "A pitch and a demo ask before she even knows why you called."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "We already have a process for expenses. It works."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Makes sense. How long does month-end close take your team right now?",
+              "reaction": "...About eight days. Why?",
+              "why": "Acknowledge it, then ask a question that measures the pain instead of arguing."
+            },
+            {
+              "grade": "good",
+              "text": "Totally fair. A lot of our customers said the same thing before they switched.",
+              "reaction": "I'm sure they did.",
+              "why": "Social proof is okay, but it's still pushing, and you learned nothing."
+            },
+            {
+              "grade": "bad",
+              "text": "Spreadsheet processes break as you grow. Are you sure it works?",
+              "reaction": "Yes. I'm sure.",
+              "why": "Challenging her directly makes her defend her process."
+            },
+            {
+              "grade": "worst",
+              "text": "Okay, no worries, I'll send you some info.",
+              "reaction": "Sure. Bye.",
+              "why": "Folding at the first objection. Every buyer says this."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "Eight days. Mostly chasing receipts from the job sites. Our superintendents never send them in."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Eight days of chasing. What happens when the books close late?",
+              "reaction": "The bank wants our financials by the 10th. We've been late twice this year.",
+              "why": "Dig into the impact. The bank deadline is the real reason to change."
+            },
+            {
+              "grade": "good",
+              "text": "That's really common in construction. Our app lets supers snap receipts right on site.",
+              "reaction": "Our supers barely use email.",
+              "why": "Relevant, but you jumped to a feature before you understood the impact."
+            },
+            {
+              "grade": "bad",
+              "text": "Honestly, eight days is pretty normal for your industry.",
+              "reaction": "Then why are you calling me?",
+              "why": "You just told her the problem isn't a problem."
+            },
+            {
+              "grade": "worst",
+              "text": "So if I got you down to two days, you'd buy today, right?",
+              "reaction": "No.",
+              "why": "A hard close on a cold call before you've earned anything."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "Look, what does this even cost?"
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "It depends on how many people submit expenses. Usually 6 to 9 dollars a user. How many people in the field would be on it?",
+              "reaction": "About 60.",
+              "why": "Give a straight range, then ask a question that scopes it."
+            },
+            {
+              "grade": "good",
+              "text": "I'd rather show you the value before we talk price.",
+              "reaction": "That usually means expensive.",
+              "why": "Dodging price feels shady, even when you mean well."
+            },
+            {
+              "grade": "bad",
+              "text": "For you, I can do 40 percent off our list price.",
+              "reaction": "You don't even know what we need yet.",
+              "why": "A discount before she sees value tells her your price is fake."
+            },
+            {
+              "grade": "worst",
+              "text": "Honestly, if you have to ask, it's probably not for you.",
+              "reaction": "Wow. Okay.",
+              "why": "Condescending. Never make the buyer feel small."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "Sixty people times nine bucks... that's real money. I'd need the CEO to approve it."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Understood. What would he need to see to say yes?",
+              "reaction": "That it pays for itself. He hates new software.",
+              "why": "Find out the decision maker's criteria instead of guessing."
+            },
+            {
+              "grade": "good",
+              "text": "No problem. Could you forward him my email?",
+              "reaction": "I guess.",
+              "why": "Passive. You just handed control of the deal to a forwarded email."
+            },
+            {
+              "grade": "bad",
+              "text": "Can't you approve it? It's only about six grand a year.",
+              "reaction": "That's not how it works here.",
+              "why": "Shrinking the price and pushing past her process."
+            },
+            {
+              "grade": "worst",
+              "text": "Can I just call him directly?",
+              "reaction": "No. You can't.",
+              "why": "Going around your champion burns the relationship."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "So what now?"
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Let's do 20 minutes Thursday at 2 with you and your CEO. I'll bring the math on your eight-day close and the bank deadline. Does that work?",
+              "reaction": "...Thursday at 2 works. Send the invite.",
+              "why": "A specific time, the right people, and an agenda built on HER pain."
+            },
+            {
+              "grade": "good",
+              "text": "Can we find some time next week to talk more?",
+              "reaction": "Email me some times.",
+              "why": "Vague next steps turn into ghosting."
+            },
+            {
+              "grade": "bad",
+              "text": "I'll send you a demo video and a few case studies.",
+              "reaction": "Sure.",
+              "why": "Content isn't a next step. Nothing is on the calendar."
+            },
+            {
+              "grade": "worst",
+              "text": "Great, I'll send the contract over today.",
+              "reaction": "Whoa. No.",
+              "why": "Way too early. She hasn't seen anything or talked to her CEO."
+            }
+          ]
+        }
+      ],
+      "endings": {
+        "win": "Meeting booked with Linda and her CEO for Thursday at 2.",
+        "ok": "She'll \"take a look.\" Maybe.",
+        "lose": "Linda's gone. She's not taking your next call."
+      }
+    },
+    {
+      "id": "fsbo",
+      "title": "The For-Sale-By-Owner",
+      "category": "real-estate",
+      "stars": 3,
+      "buyer": {
+        "name": "Frank Deluca",
+        "title": "Selling his own house",
+        "color": [
+          "#fcd34d",
+          "#b45309"
+        ]
+      },
+      "you": "Taylor, a listing agent at Coastline Realty. Commission is about 2.5%.",
+      "goal": "Get a sit-down at Frank's house.",
+      "moments": [
+        {
+          "context": [
+            [
+              "buyer",
+              "Yeah?"
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Hi Frank, Taylor with Coastline Realty. I saw your sign on Elm. I know you're selling it yourself and I respect that. Can I ask how it's going so far?",
+              "reaction": "...Slower than I thought.",
+              "why": "Respect his choice, then get curious. He relaxes because you're not attacking it."
+            },
+            {
+              "grade": "good",
+              "text": "Hi Frank, Taylor with Coastline Realty. Have you thought about working with an agent?",
+              "reaction": "Nope. That's the whole point of the sign.",
+              "why": "Straight to the ask. He's heard it ten times this week."
+            },
+            {
+              "grade": "bad",
+              "text": "Hi Frank, most people who sell on their own end up listing with an agent anyway.",
+              "reaction": "Well, I won't.",
+              "why": "Telling him he'll fail makes him dig in."
+            },
+            {
+              "grade": "worst",
+              "text": "Hi Frank! I have a buyer who'd love your house.",
+              "reaction": "Really? Who?",
+              "why": "A fake buyer gets found out fast, and then you're done."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "I'm not paying some agent thirty grand to put it on Zillow."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "That's fair, thirty grand is real money. What would an agent have to do to be worth it to you?",
+              "reaction": "Get me more than I'd get on my own, I guess.",
+              "why": "Agree with the part that's true, then let him set the bar."
+            },
+            {
+              "grade": "good",
+              "text": "Totally get it. Studies show agents get about 10 percent more on average.",
+              "reaction": "Studies paid for by realtors.",
+              "why": "Stats without trust bounce right off."
+            },
+            {
+              "grade": "bad",
+              "text": "We do a lot more than put it on Zillow.",
+              "reaction": "Like what? Take pictures?",
+              "why": "Defensive. Now you're arguing about your job."
+            },
+            {
+              "grade": "worst",
+              "text": "I could do one percent if you list with me today.",
+              "reaction": "Then what's your actual value?",
+              "why": "Cutting your fee instantly tells him it was never worth 2.5."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "I've had two showings in three weeks. One guy just wanted to see the pool."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Two showings in three weeks. When do you need to be moved out?",
+              "reaction": "We close on a house in Boise in 45 days. So... soon.",
+              "why": "The timeline is what makes this urgent for HIM, not you."
+            },
+            {
+              "grade": "good",
+              "text": "Did you follow up with either of them?",
+              "reaction": "The pool guy never called back.",
+              "why": "Fine, but it doesn't uncover why this matters."
+            },
+            {
+              "grade": "bad",
+              "text": "That's because you're not on the MLS.",
+              "reaction": "I'm on Zillow.",
+              "why": "Lecturing him about what he did wrong."
+            },
+            {
+              "grade": "worst",
+              "text": "Honestly, your price is probably too high.",
+              "reaction": "You haven't even seen it.",
+              "why": "Judging a house you've never walked through."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "Forty-five days. Yeah. My wife's a little stressed about it."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "What happens if it isn't sold by then?",
+              "reaction": "We'd be paying two mortgages. We really can't do that.",
+              "why": "Let him say the consequence out loud. Now he owns the problem."
+            },
+            {
+              "grade": "good",
+              "text": "That's a tight window, but it's doable.",
+              "reaction": "That's what I keep telling her.",
+              "why": "Reassuring him takes away the reason to act."
+            },
+            {
+              "grade": "bad",
+              "text": "Then you really need an agent.",
+              "reaction": "Don't tell me what I need.",
+              "why": "Telling beats asking only in your head."
+            },
+            {
+              "grade": "worst",
+              "text": "If you list with me, I guarantee it sells in 30 days.",
+              "reaction": "Nobody can guarantee that.",
+              "why": "An overpromise he knows is fake."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "Look, what would you even do differently?"
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Honestly, I'd want to walk through it before I tell you anything. Usually it's pricing off real comps, pro photos, and getting it in front of agents with buyers ready right now.",
+              "reaction": "Hm. That's more than I've done.",
+              "why": "Humble, specific, and it earns the visit."
+            },
+            {
+              "grade": "good",
+              "text": "We'd put it on the MLS, do professional photos, and hold open houses.",
+              "reaction": "I could hire a photographer myself.",
+              "why": "A generic list he can copy himself."
+            },
+            {
+              "grade": "bad",
+              "text": "We use a proprietary 47-point marketing system.",
+              "reaction": "Sounds like a brochure.",
+              "why": "Jargon instead of substance."
+            },
+            {
+              "grade": "worst",
+              "text": "Everything. Your listing photos are pretty rough.",
+              "reaction": "My wife took those.",
+              "why": "You just insulted his wife."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "I'm still not sold on the commission."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "That's fine, you don't have to decide today. Can I come by Saturday at 10 and show you a net sheet, what you'd walk away with both ways? If selling yourself nets you more, I'll tell you.",
+              "reaction": "...Okay. Saturday at 10. Bring the numbers.",
+              "why": "Low risk for him, a specific time, and honesty that builds trust."
+            },
+            {
+              "grade": "good",
+              "text": "Can I send you a market report and follow up next week?",
+              "reaction": "Sure, send it.",
+              "why": "Nothing scheduled. He'll ignore it."
+            },
+            {
+              "grade": "bad",
+              "text": "Think about it: would you do your own dental work?",
+              "reaction": "That's not the same thing.",
+              "why": "A cheesy analogy that feels like a sales script."
+            },
+            {
+              "grade": "worst",
+              "text": "The commission isn't negotiable, but trust me, it's worth it.",
+              "reaction": "Then I guess we're done.",
+              "why": "\"Trust me\" and a wall. Game over."
+            }
+          ]
+        }
+      ],
+      "endings": {
+        "win": "You're sitting at Frank's kitchen table Saturday at 10.",
+        "ok": "Frank says he'll call you if it doesn't sell. He won't.",
+        "lose": "Frank hung up. The sign stays in the yard."
+      }
+    },
+    {
+      "id": "tina",
+      "title": "The \"I Need to Think About It\"",
+      "category": "life-insurance",
+      "stars": 2,
+      "buyer": {
+        "name": "Tina Morales",
+        "title": "Single mom, two kids",
+        "color": [
+          "#f9a8d4",
+          "#db2777"
+        ]
+      },
+      "you": "Andre from Shieldline. Term life insurance, about $30 to $40 a month for her.",
+      "goal": "Book a follow-up with Tina (and whoever she needs) at a real time.",
+      "moments": [
+        {
+          "context": [
+            [
+              "buyer",
+              "Hi, this is Tina. Oh, you're the insurance guy? Um, I guess I have a few minutes."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Thanks, Tina, I'll respect your time. You filled out a quote form last week. What made you start looking?",
+              "reaction": "My sister passed last year and her kids had nothing. It scared me.",
+              "why": "Asking WHY she's looking uncovers the real reason, and it's a big one."
+            },
+            {
+              "grade": "good",
+              "text": "Great! I can get you a quote in about five minutes.",
+              "reaction": "Okay...",
+              "why": "Efficient, but you skipped the human part."
+            },
+            {
+              "grade": "bad",
+              "text": "Perfect. Are you a smoker?",
+              "reaction": "Um, no. Why?",
+              "why": "Straight into underwriting questions feels like a form, not a conversation."
+            },
+            {
+              "grade": "worst",
+              "text": "Did you know 40 percent of families would struggle within six months of losing a parent?",
+              "reaction": "...That's really depressing.",
+              "why": "Scare stats make people shut down."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "I have two kids, 7 and 10. It's just me."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "That's a lot on your shoulders. If something happened, who would take care of them?",
+              "reaction": "My mom, probably. But she's on a fixed income.",
+              "why": "Now you know who the money is really for, and why."
+            },
+            {
+              "grade": "good",
+              "text": "Then coverage is really important for you.",
+              "reaction": "Yeah, I know.",
+              "why": "True, but it tells her nothing new."
+            },
+            {
+              "grade": "bad",
+              "text": "You'll want at least 500 thousand.",
+              "reaction": "Okay... how much is that?",
+              "why": "Prescribing before you understand her situation."
+            },
+            {
+              "grade": "worst",
+              "text": "Don't worry, we'll get you covered today.",
+              "reaction": "I don't want to rush into anything.",
+              "why": "Rushing a cautious buyer makes her more cautious."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "How much does something like this cost?"
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "For a healthy 38-year-old, half a million for 20 years usually runs 30 to 40 a month. Does that range feel doable?",
+              "reaction": "Maybe. Money's really tight.",
+              "why": "A straight answer and a check-in, so her real objection comes out."
+            },
+            {
+              "grade": "good",
+              "text": "It depends on your health, but I'll run the numbers.",
+              "reaction": "Okay, but like, roughly?",
+              "why": "Fine, but she wanted a straight answer."
+            },
+            {
+              "grade": "bad",
+              "text": "Less than a coffee a day!",
+              "reaction": "I don't really buy coffee.",
+              "why": "A cliché she's heard a hundred times."
+            },
+            {
+              "grade": "worst",
+              "text": "Price shouldn't matter when it's your kids' future.",
+              "reaction": "Well, it does matter. I have a budget.",
+              "why": "Guilt instead of respect."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "Money's tight. And honestly, I need to think about it."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Of course. Can I ask what part you'd be thinking about? The price, or something else?",
+              "reaction": "...I guess I'm scared I'll pick the wrong thing.",
+              "why": "\"Think about it\" hides the real objection. You found it."
+            },
+            {
+              "grade": "good",
+              "text": "Totally understand. When would be a good time to follow up?",
+              "reaction": "Maybe in a couple weeks?",
+              "why": "Polite, but the real objection stays hidden."
+            },
+            {
+              "grade": "bad",
+              "text": "What's there to think about? Your kids need this.",
+              "reaction": "Please don't guilt trip me.",
+              "why": "Pressure plus guilt. She's pulling away."
+            },
+            {
+              "grade": "worst",
+              "text": "Rates go up on your birthday, so waiting will cost you.",
+              "reaction": "My birthday's in October.",
+              "why": "Fake urgency on a nervous buyer."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "Like, what if I buy it and it's the wrong amount or the wrong kind?"
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "That's a smart worry. Let's figure out the right amount together. What would your mom need each year to raise them?",
+              "reaction": "Probably thirty thousand a year. Until they're 18.",
+              "why": "Turn her fear into a simple math problem you solve together."
+            },
+            {
+              "grade": "good",
+              "text": "You can always change it later.",
+              "reaction": "Can I? Really?",
+              "why": "Reassuring, but vague."
+            },
+            {
+              "grade": "bad",
+              "text": "Term is always the right kind, don't worry about it.",
+              "reaction": "Okay, but how do I know?",
+              "why": "\"Don't worry\" isn't an answer."
+            },
+            {
+              "grade": "worst",
+              "text": "I'd actually recommend our whole life policy. It builds cash value.",
+              "reaction": "That sounds expensive.",
+              "why": "Upselling a tight-budget buyer into the wrong product."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "Okay, this is helping. I still want to talk to my mom."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "That's a great idea since she'd be the guardian. Want to do a quick call with both of you Thursday around 7? I'll bring two options and you pick.",
+              "reaction": "Yeah. Thursday at 7. She'd like that.",
+              "why": "Invite the decision helper in, set a time, and make it easy."
+            },
+            {
+              "grade": "good",
+              "text": "Sounds good. Call me after you talk to her.",
+              "reaction": "Okay, I will.",
+              "why": "She won't. Nothing is scheduled."
+            },
+            {
+              "grade": "bad",
+              "text": "Can't you just decide today? It's pretty simple.",
+              "reaction": "I said I want to talk to her.",
+              "why": "Ignoring what she just told you."
+            },
+            {
+              "grade": "worst",
+              "text": "If you apply today, I can lock in this rate.",
+              "reaction": "I think I'm going to go.",
+              "why": "Pressure at the finish line."
+            }
+          ]
+        }
+      ],
+      "endings": {
+        "win": "Thursday at 7 with Tina and her mom. She thanked you.",
+        "ok": "She said she'll call after she talks to her mom.",
+        "lose": "Tina stopped answering. The kids still aren't covered."
+      }
+    },
+    {
+      "id": "camry",
+      "title": "The Price Shopper",
+      "category": "car-sales",
+      "stars": 4,
+      "buyer": {
+        "name": "Denise Walker",
+        "title": "Commutes 80 miles a day",
+        "color": [
+          "#fca5a5",
+          "#b91c1c"
+        ]
+      },
+      "you": "Mike at Harbor Toyota. A 2022 Camry SE, 28,000 miles, listed at $27,900 out the door.",
+      "goal": "Get Denise in today with the car ready.",
+      "moments": [
+        {
+          "context": [
+            [
+              "buyer",
+              "Hi, I'm calling about the 2022 Camry on your site. What's the out-the-door price?"
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Happy to help. Is it the silver SE with 28,000 miles? I want to make sure I give you the right number.",
+              "reaction": "Yeah, that one.",
+              "why": "Confirm the exact car first. It shows you're careful, and it buys you a question."
+            },
+            {
+              "grade": "good",
+              "text": "Out the door it's about 27,900 with tax and fees.",
+              "reaction": "Another dealer is at 26,500.",
+              "why": "A straight answer, but you gave up your only leverage right away."
+            },
+            {
+              "grade": "bad",
+              "text": "Great car! When can you come in?",
+              "reaction": "I just want a price.",
+              "why": "Ignoring her question."
+            },
+            {
+              "grade": "worst",
+              "text": "We don't give prices over the phone.",
+              "reaction": "Then I'll call someone who does.",
+              "why": "A 1998 policy. She's gone."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "Yeah, that one. I've got a quote from another dealer at 26,500."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Nice, sounds like you've done your homework. Is theirs the same trim and mileage?",
+              "reaction": "Um... I think theirs has 41,000 miles.",
+              "why": "Compare apples to apples without bashing anyone."
+            },
+            {
+              "grade": "good",
+              "text": "We might be able to get closer to that.",
+              "reaction": "How close?",
+              "why": "Negotiating against yourself."
+            },
+            {
+              "grade": "bad",
+              "text": "Their cars are probably auction cars with problems.",
+              "reaction": "You don't know that.",
+              "why": "Trashing the other dealer makes you look desperate."
+            },
+            {
+              "grade": "worst",
+              "text": "I'll beat it. 26,000, done.",
+              "reaction": "...Then why was it 27,900?",
+              "why": "Now she thinks every number you say is fake."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "I don't really care about the miles. I just need something reliable. My commute is 80 miles a day."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Eighty a day, so about 20,000 miles a year. How long are you hoping to keep this one?",
+              "reaction": "Forever. My last car died at 150k and it was a nightmare.",
+              "why": "Her commute makes the mileage matter. Let her get there herself."
+            },
+            {
+              "grade": "good",
+              "text": "Then the Camry's perfect. It's super reliable.",
+              "reaction": "They all say that.",
+              "why": "True, but generic."
+            },
+            {
+              "grade": "bad",
+              "text": "With 80 miles a day, the miles actually matter a lot.",
+              "reaction": "I said I don't care about that.",
+              "why": "Correcting her directly makes her defend it."
+            },
+            {
+              "grade": "worst",
+              "text": "Have you thought about a hybrid? We have a Prius for 31k.",
+              "reaction": "I'm trying to spend less, not more.",
+              "why": "Upsell before you've earned the right."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "So what's your best price? I need to decide today."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Fair. Before I give you a number: if the price works, is there anything else that would stop you from buying today?",
+              "reaction": "My trade-in. They offered me 4,000.",
+              "why": "Flush out the hidden objection before you spend your discount."
+            },
+            {
+              "grade": "good",
+              "text": "Let me talk to my manager and call you back.",
+              "reaction": "I don't have time for games.",
+              "why": "The classic manager dance. Buyers hate it."
+            },
+            {
+              "grade": "bad",
+              "text": "I can do 26,800. That's my best.",
+              "reaction": "Still more than 26,500.",
+              "why": "Your \"best\" still lost."
+            },
+            {
+              "grade": "worst",
+              "text": "Our price is our price.",
+              "reaction": "Then I'm going with them.",
+              "why": "A wall with no reason behind it."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "They offered me 4,000 for my trade. It's a 2012 Corolla."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Tell me about the Corolla, the miles and condition? I'll have our appraiser give you a real number, no games.",
+              "reaction": "180,000 miles. The AC's broken.",
+              "why": "Honest process. And now you both know 4,000 was generous."
+            },
+            {
+              "grade": "good",
+              "text": "We usually give more than other dealers on trades.",
+              "reaction": "Usually isn't a number.",
+              "why": "A vague promise."
+            },
+            {
+              "grade": "bad",
+              "text": "4,000 is generous for a 2012.",
+              "reaction": "So you'd give me less?",
+              "why": "True, but it makes you the bad guy."
+            },
+            {
+              "grade": "worst",
+              "text": "Forget the trade. Sell it on Craigslist.",
+              "reaction": "I don't have time for that.",
+              "why": "You just created more work for her."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "Okay. So can you make this work or not?"
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "I think so. Can you come in at 5:30? I'll have the car pulled up front, the appraiser ready, and the numbers written down, so it takes 45 minutes, not four hours.",
+              "reaction": "5:30 works. Don't make me wait.",
+              "why": "A specific time, and you solved her real fear: wasting her evening."
+            },
+            {
+              "grade": "good",
+              "text": "Come by whenever and ask for me.",
+              "reaction": "Maybe tomorrow.",
+              "why": "\"Whenever\" means never."
+            },
+            {
+              "grade": "bad",
+              "text": "I'll need your credit application first.",
+              "reaction": "I haven't even seen the car.",
+              "why": "Paperwork before trust."
+            },
+            {
+              "grade": "worst",
+              "text": "If I get it to 26,400, will you buy it right now over the phone?",
+              "reaction": "I haven't even driven it.",
+              "why": "Price-dropping and pressuring at the same time."
+            }
+          ]
+        }
+      ],
+      "endings": {
+        "win": "Denise is on the lot at 5:30. The car is pulled up front.",
+        "ok": "She said maybe this weekend.",
+        "lose": "Denise bought the other car with 41,000 miles."
+      }
+    },
+    {
+      "id": "brenda",
+      "title": "The Burned Homeowner",
+      "category": "solar",
+      "stars": 5,
+      "buyer": {
+        "name": "Brenda Ortiz",
+        "title": "Homeowner, very skeptical",
+        "color": [
+          "#fdba74",
+          "#c2410c"
+        ]
+      },
+      "you": "Chris from SunPeak, knocking doors. $0 down, and options without a 25-year loan.",
+      "goal": "Get a real appointment when both homeowners are home.",
+      "moments": [
+        {
+          "context": [
+            [
+              "buyer",
+              "Can I help you?"
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Hi, I'm Chris with SunPeak. I'm doing quick energy checks on your street today. Are you the homeowner?",
+              "reaction": "Yeah. We're not interested in solar.",
+              "why": "Who you are and why you're there, in one breath."
+            },
+            {
+              "grade": "good",
+              "text": "Hi! Are you the homeowner?",
+              "reaction": "Who's asking?",
+              "why": "A question before you've said who you are. Suspicious at a door."
+            },
+            {
+              "grade": "bad",
+              "text": "Hi! Do you like saving money?",
+              "reaction": "...Seriously?",
+              "why": "A cheesy line she's heard before."
+            },
+            {
+              "grade": "worst",
+              "text": "Hi, I'm with the utility company, doing an inspection.",
+              "reaction": "You're not with the utility. Bye.",
+              "why": "Lying about who you are. The door closes."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "We're not interested in solar. My neighbor got burned."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "I'm sorry to hear that. What happened with your neighbor?",
+              "reaction": "His bill went UP and he's stuck in a 25-year loan.",
+              "why": "Let her tell the story. That's her real objection."
+            },
+            {
+              "grade": "good",
+              "text": "We're different from most solar companies.",
+              "reaction": "That's what he heard too.",
+              "why": "Every rep says it."
+            },
+            {
+              "grade": "bad",
+              "text": "That's exactly why you should go with a company like us.",
+              "reaction": "Nope.",
+              "why": "Using her pain as your pitch."
+            },
+            {
+              "grade": "worst",
+              "text": "Your neighbor probably didn't read the contract.",
+              "reaction": "He's my friend. Leave.",
+              "why": "Blaming her friend."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "His bill went up and he's stuck in a 25-year loan. So, no."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "That's awful, and honestly, it happens. If you ever did look at it again, what would need to be different?",
+              "reaction": "No loan. No surprises. And I'd want to see the real math.",
+              "why": "Agree it happens, then let her write her own conditions."
+            },
+            {
+              "grade": "good",
+              "text": "We don't do 25-year loans.",
+              "reaction": "Okay, so what do you do?",
+              "why": "Good info, but it skips her feelings."
+            },
+            {
+              "grade": "bad",
+              "text": "His system was probably too small.",
+              "reaction": "You don't know anything about his system.",
+              "why": "Guessing and being wrong."
+            },
+            {
+              "grade": "worst",
+              "text": "Prices are going up next month, so now is the time.",
+              "reaction": "Goodbye.",
+              "why": "Fake urgency on the most skeptical person on the street."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "And what's our electric bill got to do with you anyway?"
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Fair question. What's it running in the summer?",
+              "reaction": "Almost 400. My husband works nights and sleeps with the AC on all day.",
+              "why": "Short answer, then a question. She keeps talking."
+            },
+            {
+              "grade": "good",
+              "text": "Most people on this street are paying 300-plus in summer.",
+              "reaction": "Okay?",
+              "why": "About them, not her."
+            },
+            {
+              "grade": "bad",
+              "text": "Solar can eliminate your bill completely.",
+              "reaction": "That's what they told my neighbor.",
+              "why": "The exact line that burned her neighbor."
+            },
+            {
+              "grade": "worst",
+              "text": "I can get you $0 bills forever.",
+              "reaction": "Now I know you're lying.",
+              "why": "An overpromise that confirms her fears."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "Almost 400. It's insane."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "Four hundred with the AC running all day. What would you do with that money if most of it went away?",
+              "reaction": "Honestly? My daughter's braces.",
+              "why": "Make it personal. The money has a purpose now."
+            },
+            {
+              "grade": "good",
+              "text": "That's really high. We can probably cut it in half.",
+              "reaction": "Probably.",
+              "why": "\"Probably\" is a weak promise."
+            },
+            {
+              "grade": "bad",
+              "text": "Then you're throwing away almost 5 grand a year.",
+              "reaction": "Don't tell me I'm throwing money away.",
+              "why": "Right math, wrong tone."
+            },
+            {
+              "grade": "worst",
+              "text": "Great, let me grab your electric bill and we'll start the paperwork.",
+              "reaction": "Whoa, no.",
+              "why": "Way too fast."
+            }
+          ]
+        },
+        {
+          "context": [
+            [
+              "buyer",
+              "I'm not signing anything today."
+            ]
+          ],
+          "options": [
+            {
+              "grade": "best",
+              "text": "You shouldn't. Can I come back Thursday at 6:30 when your husband's up, and show you both the real numbers from your bill, no loans, no pressure?",
+              "reaction": "...Thursday at 6:30. He'll have questions.",
+              "why": "Agree with her, include the husband, and promise what she asked for: real math."
+            },
+            {
+              "grade": "good",
+              "text": "No problem. Can I leave a flyer?",
+              "reaction": "Sure.",
+              "why": "Polite exit, no appointment."
+            },
+            {
+              "grade": "bad",
+              "text": "The tax credit might go away soon.",
+              "reaction": "Then it goes away.",
+              "why": "Pressure after she set a boundary."
+            },
+            {
+              "grade": "worst",
+              "text": "What would it take to get you to sign today?",
+              "reaction": "Nothing. Goodbye.",
+              "why": "She just said no. You didn't listen."
+            }
+          ]
+        }
+      ],
+      "endings": {
+        "win": "Thursday at 6:30 with Brenda and her husband. She said, \"You're different.\"",
+        "ok": "She took a flyer. It's in the recycling.",
+        "lose": "The door closed. She's warning the neighbors about you."
+      }
+    }
+  ]
+}

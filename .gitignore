@@ -1,0 +1,18 @@
+# Secrets and settings (never commit these)
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# Mac
+.DS_Store
+
+# local database
+*.db
+.Rhistory
+callcade.log
+backend/playtest_output.txt
