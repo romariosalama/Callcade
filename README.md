@@ -92,4 +92,4 @@ backend/
 
 ---
 
-Made by Romario Salama · [LinkedIn]([https://www.linkedin.com/in/romario-salama-8a5ba21a2/](https://www.linkedin.com/in/romario-salama-8a5ba21a2/))
+Made by Romario Salama · [LinkedIn](https://www.linkedin.com/in/romario-salama-8a5ba21a2/)
