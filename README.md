@@ -4,7 +4,7 @@
 
 ![Callcade landing page](docs/screenshots/landing.png)
 
-**Trailer:** [frontend/media/callcade-trailer-web.mp4](frontend/media/callcade-trailer-web.mp4). I built it as an animated web page (`frontend/trailer/`), rendered it frame by frame with Playwright, and made the music in Python with numpy.
+**Trailer:** [frontend/media/callcade-trailer-web.mp4](frontend/media/callcade-trailer-web.mp4).
 
 ## Why I built this
 
