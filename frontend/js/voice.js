@@ -264,10 +264,14 @@ function listen({ onUpdate, onDone, silenceMs = 1300, afterSentenceMs = 650 }) {
   };
 
   recognizer.onresult = (e) => {
-    heard = [...e.results].map((r) => r[0].transcript).join(" ");
+    const words = [...e.results].map((r) => r[0].transcript).join(" ");
+    const sentenceDone = e.results[e.results.length - 1].isFinal;
+    // Safari on iPhone keeps re-sending the same words after you stop talking. only restart
+    // the "are they done?" countdown when something new was said, or it never runs out
+    if (words.trim() === heard.trim() && !sentenceDone) return;
+    heard = words;
     onUpdate && onUpdate(heard.trim());
     clearTimeout(silenceTimer);
-    const sentenceDone = e.results[e.results.length - 1].isFinal;
     silenceTimer = setTimeout(finish, sentenceDone ? afterSentenceMs : silenceMs);
   };
   recognizer.onerror = (e) => {
