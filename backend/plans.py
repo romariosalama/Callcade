@@ -25,11 +25,15 @@ SWITCH_DAYS = 30  # free users can change their industry once a month
 
 
 def plan_of(user):
-    return user["plan"] if user else "guest"
+    if not user:
+        return "guest"
+    return "pro" if user["is_admin"] else user["plan"]  # admins get everything, so I can test any buyer
 
 
 def access(user, character, unlocked_ids):
     # can this user play this buyer? (True, "") or (False, reason)
+    if user and user["is_admin"]:
+        return True, ""
     plan = plan_of(user)
     limit = PLANS[plan]["levels"]
 

@@ -644,6 +644,15 @@ def test_admin_only(client):
     assert db.get_user(user["id"])["plan"] == "pro"
 
 
+def test_admin_can_play_everything(client):
+    user = signup(client)
+    boss = next(c for c in engine.CHARACTERS.values() if c["category"] == "solar" and c.get("boss"))
+    assert client.post("/api/calls", json={"character_id": boss["id"]}).status_code == 403
+    db.set_admin(user["id"], True)
+    assert client.post("/api/calls", json={"character_id": boss["id"]}).status_code == 200
+    assert client.get("/api/plan").json()["calls_left"] is None
+
+
 def test_timezone_setting(client):
     signup(client)
     assert client.post("/api/account/timezone", json={"timezone": "Mars/Base"}).status_code == 400
