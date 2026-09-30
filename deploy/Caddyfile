@@ -1,0 +1,4 @@
+# setup.sh fills in the real domain here and copies this to /etc/caddy/Caddyfile
+DOMAIN, www.DOMAIN {
+	reverse_proxy 127.0.0.1:8000
+}

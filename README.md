@@ -84,10 +84,11 @@ backend/
   voice.py        buyer voices (Orpheus on Groq, or Polly)
   playtest.py     runs scripted calls against the real AI so I can check the buyers still feel right
   data/           the buyers for each industry, realism packs, objections, Spot the Mistake calls, Clutch Call scripts
-  frontend/
+frontend/
   index.html, css/, js/, fonts/
-  tests/
-  docs/
+deploy/           server setup for AWS Lightsail (see docs/DEPLOY.md)
+tests/
+docs/
 ```
 
 ---

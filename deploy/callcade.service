@@ -1,0 +1,14 @@
+# keeps Callcade running on the server (installed by setup.sh)
+[Unit]
+Description=Callcade
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/callcade/backend
+# one worker on purpose: active runs and rate limits live in memory
+ExecStart=/home/ubuntu/callcade/.venv/bin/uvicorn app:app --host 127.0.0.1 --port 8000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

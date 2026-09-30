@@ -8,6 +8,7 @@ session token in an httponly cookie.
 
 import hashlib
 import hmac
+import os
 import re
 import secrets
 from zoneinfo import available_timezones
@@ -23,6 +24,8 @@ import ratelimit
 router = APIRouter(prefix="/api/auth")
 
 COOKIE = "callcade_session"
+# on the live site the login cookie only ever travels over https
+SECURE_COOKIE = os.getenv("SITE_URL", "").startswith("https://")
 ITERATIONS = 200_000
 COLORS = ["#ff6b35", "#34d399", "#f472b6", "#fbbf24", "#60a5fa", "#f87171", "#22d3ee", "#ffd23f"]
 
@@ -60,7 +63,7 @@ def public_user(row):
 def start_session(response, user_id):
     token = secrets.token_urlsafe(32)
     db.create_session(token, user_id)
-    response.set_cookie(COOKIE, token, httponly=True, samesite="lax", max_age=60 * 60 * 24 * 30)
+    response.set_cookie(COOKIE, token, httponly=True, samesite="lax", secure=SECURE_COOKIE, max_age=60 * 60 * 24 * 30)
 
 
 def send_verification(user):
