@@ -232,6 +232,7 @@ function setupReplay(card, c) {
     b.onclick = () => {
       playingAll = false;
       stopSpeaking();
+      unlockAudio();
       playTurn(card, c, Number(b.dataset.i));
     };
   });
@@ -243,6 +244,7 @@ function setupReplay(card, c) {
       return;
     }
     playingAll = true;
+    unlockAudio();
     $("play-all").textContent = "■ Stop";
     for (let i = 0; i < card.transcript.length && playingAll; i++) {
       if (card.transcript[i].speaker === "rep" && !card.transcript[i].rec) continue;

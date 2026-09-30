@@ -30,7 +30,7 @@ Give Caddy a minute to get the certificate, then open `https://yourdomain.com`.
 Make yourself admin (after signing up on the site):
 
 ```bash
-cd callcade/backend && ../.venv/bin/python admin.py admin yourusername
+cd ~/callcade/backend && ../.venv/bin/python admin.py admin yourusername
 ```
 
 ## Updating the live site
@@ -38,7 +38,7 @@ cd callcade/backend && ../.venv/bin/python admin.py admin yourusername
 Push to GitHub from your computer, then on the server:
 
 ```bash
-bash callcade/deploy/update.sh
+bash ~/callcade/deploy/update.sh
 ```
 
 ## Useful commands

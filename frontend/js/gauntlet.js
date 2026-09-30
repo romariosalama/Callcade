@@ -75,7 +75,7 @@ async function renderGauntletMenu() {
     p.gVoice = $("g-voice").checked;
     p.gMic = $("g-mic") ? $("g-mic").checked : false;
     savePrefs(p);
-    ctx();
+    unlockAudio();
     try {
       const data = await api("/api/gauntlet", { category: pick });
       state.plan = await api("/api/plan");

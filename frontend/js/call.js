@@ -128,7 +128,7 @@ function preCallScreen(c, options) {
     $("dial").disabled = true;
     $("ringing").hidden = false;
     $("ringing").textContent = door ? "Knocking…" : c.inbound ? "Incoming call…" : "Ringing…";
-    ctx(); // browsers only allow audio after a click, so start it here
+    unlockAudio(); // phones only allow sound that starts from a tap, so unlock it here
 
     try {
       const [data] = await Promise.all([

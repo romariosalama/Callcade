@@ -135,33 +135,54 @@ async function speak(text, options) {
   return speakBrowser(text, options);
 }
 
+// iPhones only play sound from an audio element that already played once during a tap.
+// the buyer's voice shows up a second after the tap, so we keep one player, unlock it
+// with a tiny silent clip when the call starts, and reuse it for every line
+const player = new Audio();
+const SILENT = "data:audio/wav;base64,UklGRrQBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YZABAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA";
+let phoneFilter = null; // the phone-line filter, built once (an element can only be hooked up once)
+
+function unlockAudio() {
+  ctx();
+  player.src = SILENT;
+  player.play().catch(() => {});
+  if (window.speechSynthesis) speechSynthesis.speak(new SpeechSynthesisUtterance(""));
+}
+
+function setPhoneLine(on) {
+  const ac = ctx();
+  if (!phoneFilter) {
+    // make it sound like it's coming through a phone: cut the lows and highs
+    const src = ac.createMediaElementSource(player);
+    const low = ac.createBiquadFilter();
+    low.type = "highpass";
+    low.frequency.value = 350;
+    const high = ac.createBiquadFilter();
+    high.type = "lowpass";
+    high.frequency.value = 3300;
+    const squash = ac.createDynamicsCompressor();
+    low.connect(high).connect(squash).connect(ac.destination);
+    phoneFilter = { src, low };
+  }
+  phoneFilter.src.disconnect();
+  phoneFilter.src.connect(on ? phoneFilter.low : ac.destination);
+}
+
 function playAudio(url, options) {
   return new Promise((resolve) => {
-    const audio = new Audio(url);
-    currentAudio = audio;
+    // once the phone filter exists, all sound from the player goes through the audio context,
+    // so it has to be told whether to filter this line or not
+    if (options.phoneLine || phoneFilter) setPhoneLine(!!options.phoneLine);
+    player.src = url;
+    currentAudio = player;
     // real people on calls talk a bit faster than the AI voice does by default
-    audio.preservesPitch = true;
-    audio.playbackRate = Math.min(1.3, Math.max(1.0, 1.12 * (options.rate || 1)));
+    player.preservesPitch = true;
+    player.playbackRate = Math.min(1.3, Math.max(1.0, 1.12 * (options.rate || 1)));
     speakingDone = resolve;
-
-    if (options.phoneLine) {
-      // make it sound like it's coming through a phone: cut the lows and highs
-      const ac = ctx();
-      const src = ac.createMediaElementSource(audio);
-      const low = ac.createBiquadFilter();
-      low.type = "highpass";
-      low.frequency.value = 350;
-      const high = ac.createBiquadFilter();
-      high.type = "lowpass";
-      high.frequency.value = 3300;
-      const squash = ac.createDynamicsCompressor();
-      src.connect(low).connect(high).connect(squash).connect(ac.destination);
-    }
-
-    audio.onplay = () => options.onStart && options.onStart();
-    audio.onended = () => finishSpeaking();
-    audio.onerror = () => finishSpeaking();
-    audio.play().catch(() => finishSpeaking());
+    player.onplay = () => options.onStart && options.onStart();
+    player.onended = () => finishSpeaking();
+    player.onerror = () => finishSpeaking();
+    player.play().catch(() => finishSpeaking());
   });
 }
 
